@@ -23,7 +23,14 @@ const officialRulesHtml = fetch(
     return data;
   })
   .then(data => {
-    console.debug(computeExpectedValuesFromData(data, 2500));
+    const [lowerValue, upperValue] = computeEAprValuesFromData(data, 2500);
+    loading = false;
+    updateTableWithData(prizesAndOdds, data);
+    updateEAprValues(
+      [lowerBound, nominal, upperBound],
+      [lowerValue, 3.19, upperValue]
+    );
+    return data;
   })
   .catch(function (err) {
     console.error("ERROR:", err.message);
@@ -77,8 +84,8 @@ const getDataFromOddsTable = function (oddsTable) {
       return {
         yotta: hasYotta === "Yes",
         shared: !prize.includes("per ticket"),
-        matching: parseInt(matchingNumbers.split(" of ")[0]),
-
+        matches: parseInt(matchingNumbers.split(" of ")[0]),
+        annuity: prize.includes("**") ? 40 : 0, // years
         // Prize is in cents, USD
         prize: prize.includes("**")
           ? 5800000 * 100 // TODO: fix 40 year annuity calculation
@@ -99,7 +106,7 @@ const getDataFromOddsTable = function (oddsTable) {
   return data;
 };
 
-const computeExpectedValuesFromData = (data, balance = COST_PER_TICKET) => {
+const computeEAprValuesFromData = (data, balance = COST_PER_TICKET) => {
   const tickets = parseInt(balance / COST_PER_TICKET);
 
   /**

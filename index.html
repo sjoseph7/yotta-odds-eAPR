@@ -4,12 +4,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yotta Odds</title>
+  <title>Yotta Odds eAPR</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
 </head>
 
 <body>
-  <p>See dev tools</p>
+  <div class="container text-center mt-4" style="max-width:768px">
+    <h1>Yotta Savings eAPR Calculator</h1>
+    <h6>Updated daily using the odds reported in the <a href="https://www.withyotta.com/official-rules">official
+        rules</a></h6>
+    <p class="mt-5">This calculates the <em>effective</em> APR ("eAPR") of Yotta Savings accounts. Yotta is a lottery
+      style <...>
+    </p>
+
+    <div class="row">
+      <div class="col-sm-4 my-auto">
+        <!-- <div class="card"> -->
+        <div class="card-body">
+          <em class="card-title">Lower Bound</em> <i class="far fa-question-circle"></i>
+          <h2 id="lowerBound" class="card-text">-.--%</h2>
+        </div>
+        <!-- </div> -->
+      </div>
+      <div class="col-sm-4">
+        <!-- <div class="card"> -->
+        <div class="card-body">
+          <em class="card-title h4">Nominal</em> <i class="far fa-question-circle"></i>
+          <h1 id="nominal" class="card-text">-.--%</h1>
+        </div>
+        <!-- </div> -->
+      </div>
+      <div class="col-sm-4 my-auto">
+        <!-- <div class="card"> -->
+        <div class="card-body">
+          <em class="card-title">Upper Bound</em> <i class="far fa-question-circle"></i>
+          <h2 id="upperBound" class="card-text">-.--%</h2>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+
+    <table id="prizesAndOdds" class="table table-striped mt-4 mx-auto">
+      <thead>
+        <tr>
+          <th scope="col">Matches Yotta Ball</th>
+          <th scope="col">Number of Matches</th>
+          <th scope="col">Prize*</th>
+          <th scope="col">Odds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>...</td>
+          <td>... of ...</td>
+          <td>$... per ticket</td>
+          <td>1:...</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <form id="advanced" class="text-left">
+      <div class="form-group">
+        <label for="formControlRange">Example Range input</label>
+        <input type="range" class="form-control-range" id="formControlRange">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form> -->
+
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script>
+    // Enable tooltips
+    $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+  <script src="updateUI.js"></script>
   <script src="index.js"></script>
+
 </body>
 
 </html>
