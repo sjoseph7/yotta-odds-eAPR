@@ -25,7 +25,8 @@
       <div class="col-sm-4 my-auto">
         <!-- <div class="card"> -->
         <div class="card-body">
-          <em class="card-title">Lower Bound</em> <i class="far fa-question-circle"></i>
+          <em class="card-title">Lower Bound</em> <a href="#define-lower-bound"><i
+              class="far fa-question-circle"></i></a>
           <h2 id="lowerBound" class="card-text">-.--%</h2>
         </div>
         <!-- </div> -->
@@ -33,7 +34,7 @@
       <div class="col-sm-4">
         <!-- <div class="card"> -->
         <div class="card-body">
-          <em class="card-title h4">Nominal</em> <i class="far fa-question-circle"></i>
+          <em class="card-title h4">Nominal</em> <a href="#define-nominal"><i class="far fa-question-circle"></i></a>
           <h1 id="nominal" class="card-text">-.--%</h1>
         </div>
         <!-- </div> -->
@@ -41,7 +42,8 @@
       <div class="col-sm-4 my-auto">
         <!-- <div class="card"> -->
         <div class="card-body">
-          <em class="card-title">Upper Bound</em> <i class="far fa-question-circle"></i>
+          <em class="card-title">Upper Bound</em> <a href="#define-upper-bound"><i
+              class="far fa-question-circle"></i></a>
           <h2 id="upperBound" class="card-text">-.--%</h2>
         </div>
         <!-- </div> -->
@@ -67,6 +69,17 @@
       </tbody>
     </table>
 
+    <div class="text-left">
+      <h3 id="define-lower-bound">Lower Bound</h3>
+      <p>The lower bound calcuation assumes that so many people are participating in the lottery that the shared prizes,
+        once split amongst all the participants, are worth nothing.</p>
+
+      <h3 id="define-upper-bound">Upper Bound</h3>
+      <p>The upper bound calcuation assumes that only one person is playing the lottery, so all shared prizes are
+        received
+        in full.</p>
+    </div>
+
     <!-- <form id="advanced" class="text-left">
       <div class="form-group">
         <label for="formControlRange">Example Range input</label>
@@ -74,8 +87,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form> -->
-
-
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
