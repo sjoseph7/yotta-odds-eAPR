@@ -1,6 +1,31 @@
+// Update number of recurring tickets
 yottaBalance.addEventListener("keyup", () =>
   updateUserEntries(yottaBalance, recurringTickets)
 );
+
+// Update number of tickets issues per week
+const updateNominalValue = () => {
+  const approximateTicketsIssued = approximateTicketsIssuedInput.value;
+  const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
+    undefined,
+    yottaBalance.value || 25,
+    undefined,
+    approximateTicketsIssued
+  );
+
+  updateEAprValues(
+    [lowerBound, nominal, upperBound],
+    [lowerValue, nominalValue, upperValue]
+  );
+};
+approximateTicketsIssuedRange.addEventListener("input", e => {
+  approximateTicketsIssuedInput.value = parseInt(e.target.value);
+  updateNominalValue();
+});
+approximateTicketsIssuedInput.addEventListener("keyup", e => {
+  approximateTicketsIssuedRange.value = parseInt(e.target.value);
+  updateNominalValue();
+});
 
 function updateTableWithData(table, data = {}) {
   const headers = ["Matches Yotta Ball", "Number of Matches", "Prize*", "Odds"];

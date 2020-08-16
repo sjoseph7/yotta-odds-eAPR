@@ -18,9 +18,8 @@
     <h1>Yotta Savings eAPR Calculator</h1>
     <h6>Updated daily using the odds reported in the <a href="https://www.withyotta.com/official-rules">official
         rules</a></h6>
-    <p class="mt-5">This calculates the <em>effective</em> APR ("eAPR") of Yotta Savings accounts. Yotta is a lottery
-      style <...>
-    </p>
+    <p class="mt-5">This app calculates the <em>effective</em> APR ("eAPR") of Yotta Savings accounts. <a
+        href="/info.html">Learn more</a>.</p>
 
     <div class="row">
       <div class="col-sm-4 my-auto">
@@ -50,6 +49,12 @@
         <!-- </div> -->
       </div>
     </div>
+    <div class="mb-5">
+      <small><em>*Rates shown include the 0.20% base interest rate offered by
+          Yotta and represent an estimate of the expected rate of return over the course of a year, based on the odds of
+          winning different prizes as seen in Yotta's <a href="https://www.withyotta.com/official-rules">official
+            rules</a></em></small>
+    </div>
     <div class="card">
       <div class="card-body">
         <form id="advanced" class="text-left">
@@ -63,23 +68,30 @@
                     <div class="input-group-text">USD ($)</div>
                   </div>
                   <input id="yottaBalance" type="number" class="form-control" placeholder="25">
-                  <small class="form-text text-muted">Feel free to make it up, I won't say
-                    anything.</small>
                 </div>
+                <small class="form-text text-muted">Feel free to make it up, I won't say
+                  anything.</small>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="extraTickets">Extra tickets</label>
-                <input id="extraTickets" type="number" class="form-control" disabled>
-                <small class="form-text text-muted">From referral codes perhaps?</small>
+                <input id="extraTickets" type="number" class="form-control" placeholder="Not yet available" disabled>
+                <small class="form-text text-muted">From referral codes, perhaps?</small>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="formControlRange">(Approximate) Tickets issued to users per week:</label>
-            <input type="range" class="form-control-range" id="formControlRange">
+            <label for="approximateTicketsIssuedRange">(Approximate) number of tickets issued to all users per week:
+              <input id="approximateTicketsIssuedInput" class="form-control" type="number" placeholder="1000000"
+                value="1000000">
+              <small class="form-text text-muted">The more tickets in circulation, the more likely a grand prize will be
+                shared...</small>
+            </label>
+            <input id="approximateTicketsIssuedRange" class="form-control-range" type="range" min="1" max="20000000"
+              value="1000000">
+
           </div>
         </form>
       </div>
@@ -104,7 +116,10 @@
         </tbody>
       </table>
     </div>
-
+    <div class="mb-3 text-center">
+      <small class="m-3">SOURCE: <a target="_blank"
+          href="https://www.withyotta.com/official-rules">https://www.withyotta.com/official-rules</a></small>
+    </div>
 
     <div class="text-left mb-5">
       <p>
