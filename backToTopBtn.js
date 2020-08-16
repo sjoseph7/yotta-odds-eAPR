@@ -7,7 +7,7 @@
  *
  */
 
-const MINIMUM_DISTANCE_FROM_TOP = 50;
+const MINIMUM_DISTANCE_FROM_TOP = 250;
 
 window.onscroll = function () {
   determineButtonVisibility(goToTopBtn);
