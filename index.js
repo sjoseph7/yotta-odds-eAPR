@@ -1,5 +1,8 @@
 const COST_PER_TICKET = 2500; // $25
+const ISSUED_TICKETS_PER_WEEK = 10000000; // 10 million tickets
 const MINIMUM_APR = 0.2; // 0.20%
+
+let yottaData = [];
 
 const officialRulesUrl = "https://www.withyotta.com/official-rules";
 const officialRulesHtml = fetch(
@@ -18,6 +21,7 @@ const officialRulesHtml = fetch(
   .then(function (doc) {
     const oddsTable = getOddsTableFromDoc(doc);
     const data = getDataFromOddsTable(oddsTable);
+    yottaData = data;
 
     console.table(data);
     return data;
@@ -54,7 +58,7 @@ const getDataFromOddsTable = function (oddsTable) {
    */
 
   const tableBodyData = [];
-  oddsTable.childNodes.forEach((childNode, index) => {
+  oddsTable.childNodes.forEach(childNode => {
     if (
       ![...childNode.classList].includes("table-header") && // Filter out header data
       childNode.firstElementChild.firstElementChild // Filter out error-generating blank cells
@@ -106,8 +110,13 @@ const getDataFromOddsTable = function (oddsTable) {
   return data;
 };
 
-const computeEAprValuesFromData = (data, balance = COST_PER_TICKET) => {
-  const tickets = parseInt(balance / COST_PER_TICKET);
+function computeEAprValuesFromData(
+  data = yottaData,
+  balance = COST_PER_TICKET,
+  extraTickets = 0,
+  ticketsPerWeek = ISSUED_TICKETS_PER_WEEK
+) {
+  const tickets = parseInt(balance / COST_PER_TICKET) + extraTickets;
 
   /**
    * This is the lower bound and assumes only infinite people are
@@ -134,4 +143,4 @@ const computeEAprValuesFromData = (data, balance = COST_PER_TICKET) => {
     ((lowerBound * tickets) / balance) * 100 * 52,
     ((upperBound * tickets) / balance) * 100 * 52
   ];
-};
+}

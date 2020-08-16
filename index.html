@@ -50,7 +50,40 @@
         <!-- </div> -->
       </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <form id="advanced" class="text-left">
+          <h3 class="mt-2 mb-4"><strong>Recurring Tickets:</strong> <span id="recurringTickets">1</span></h3>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="yottaBalance">Yotta Balance</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">USD ($)</div>
+                  </div>
+                  <input id="yottaBalance" type="number" class="form-control" placeholder="25">
+                  <small class="form-text text-muted">Feel free to make it up, I won't say
+                    anything.</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="extraTickets">Extra tickets</label>
+                <input id="extraTickets" type="number" class="form-control" disabled>
+                <small class="form-text text-muted">From referral codes perhaps?</small>
+              </div>
+            </div>
+          </div>
 
+          <div class="form-group">
+            <label for="formControlRange">(Approximate) Tickets issued to users per week:</label>
+            <input type="range" class="form-control-range" id="formControlRange">
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="table-responsive-sm">
       <table id="prizesAndOdds" class="table table-striped mt-4 mx-auto">
         <thead>
@@ -75,15 +108,17 @@
 
     <div class="text-left mb-5">
       <p>
-        <em>*If the prize does not say “per ticket” then the prize listed will be split equally amongst all individuals
-          at that level. For example, if there are 3 matches with the same number of numbers (including the Yotta all)
-          the prize will be equally split amongst those three individuals.</em>
+        <small><em>*If the prize does not say "per ticket" then the prize listed will be split equally amongst all
+            individuals
+            at that level. For example, if there are 3 matches with the same number of numbers (including the Yotta all)
+            the prize will be equally split amongst those three individuals.</em></small>
       </p>
       <p>
-        <em>
-          **The grand prize will be paid as a one-time, lump sum payment of $5,800,000. This is the current present cash
-          value of a $10,000,000, 40 year annuity.
-        </em>
+        <small><em>
+            **The grand prize will be paid as a one-time, lump sum payment of $5,800,000. This is the current present
+            cash
+            value of a $10,000,000, 40 year annuity.
+          </em></small>
       </p>
       <br>
       <h3 id="define-lower-bound">Lower Bound</h3>
@@ -96,15 +131,6 @@
         in full.</p>
     </div>
 
-
-
-    <!-- <form id="advanced" class="text-left">
-      <div class="form-group">
-        <label for="formControlRange">Example Range input</label>
-        <input type="range" class="form-control-range" id="formControlRange">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form> -->
     <button id="goToTopBtn" class="shadow" title="Go to top" onclick="goToTopOfPage()">
       <i class="fas fa-sort-up"></i>
     </button>

@@ -1,9 +1,18 @@
+yottaBalance.addEventListener("keyup", () =>
+  updateUserEntries(yottaBalance, recurringTickets)
+);
+
 function updateTableWithData(table, data = {}) {
   const headers = ["Matches Yotta Ball", "Number of Matches", "Prize*", "Odds"];
 
   clearTable(table);
   addHeadersToTable(table, headers);
   addDataToTable(table, data);
+}
+
+function updateUserEntries(balanceInput, ticketText) {
+  const balance = parseInt(balanceInput.value * 100);
+  ticketText.innerText = parseInt((balance || 2500) / 2500);
 }
 
 function updateEAprValues(
