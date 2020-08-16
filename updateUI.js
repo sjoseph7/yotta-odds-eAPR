@@ -8,7 +8,7 @@ const updateNominalValue = () => {
   const approximateTicketsIssued = approximateTicketsIssuedInput.value;
   const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
     undefined,
-    yottaBalance.value || 25,
+    parseInt(yottaBalance.value * 100) || 2500,
     undefined,
     approximateTicketsIssued
   );
