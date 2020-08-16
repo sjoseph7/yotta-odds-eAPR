@@ -165,8 +165,8 @@ function computeEAprValuesFromData(
   }, 0);
 
   return [
-    ((lowerBound * tickets) / balance) * 100 * 52 + BASE_APY,
-    ((nominal * tickets) / balance) * 100 * 52 + BASE_APY,
-    ((upperBound * tickets) / balance) * 100 * 52 + BASE_APY
+    ((lowerBound * tickets) / balance) * 100 * 52,
+    ((nominal * tickets) / balance) * 100 * 52,
+    ((upperBound * tickets) / balance) * 100 * 52
   ];
 }
