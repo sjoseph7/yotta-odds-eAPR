@@ -2,36 +2,56 @@ const COST_PER_TICKET = 2500; // $25
 const ISSUED_TICKETS_PER_WEEK = 10000000; // 10 million tickets
 const BASE_APY = 0.2; // 0.20%
 const BACKEND_API_ENDPOINT = `http://localhost:4000/api/v1/prize-data?limit=1&sort=-createdAt`;
+const YOTTA_DATA_KEY = "YOTTA_DATA_KEY";
+const REFRESH_TIME = 1000 * 60 * 15; // every 15 minutes
 
 let yottaData = [];
 
-fetch(BACKEND_API_ENDPOINT)
-  .then(async function (response) {
-    try {
-      const json = await response.json();
-      console.debug(json);
-      return json.data[0] && json.data[0].rows;
-    } catch (err) {
-      return [];
-    }
-  })
-  .then(data => {
-    console.debug(data);
-    const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
-      data,
-      2500
-    );
-    loading = false;
-    updateTableWithData(prizesAndOdds, data);
-    updateEAprValues(
-      [lowerBound, nominal, upperBound],
-      [lowerValue, nominalValue, upperValue]
-    );
-    return data;
-  })
-  .catch(function (err) {
-    console.error("ERROR:", err.message);
-  });
+(async function () {
+  let rows = [];
+  // Use locally stored data if it exists...
+  if (
+    localStorage &&
+    localStorage.getItem(YOTTA_DATA_KEY) &&
+    Date.now() - JSON.parse(localStorage.getItem(YOTTA_DATA_KEY)).lastUpdated <
+      REFRESH_TIME
+  ) {
+    const data = JSON.parse(localStorage.getItem(YOTTA_DATA_KEY));
+    console.info("Using stored data");
+    rows = data.rows;
+  } else {
+    // ...otherwise get data from backend
+    rows = await fetch(BACKEND_API_ENDPOINT).then(async function (response) {
+      try {
+        console.info("Getting new data");
+        const json = await response.json();
+        return json.data[0] && json.data[0].rows;
+      } catch (err) {
+        return [];
+      }
+    });
+  }
+  const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
+    rows,
+    2500
+  );
+  loading = false;
+  updateTableWithData(prizesAndOdds, rows);
+  updateEAprValues(
+    [lowerBound, nominal, upperBound],
+    [lowerValue, nominalValue, upperValue]
+  );
+
+  localStorage.setItem(
+    YOTTA_DATA_KEY,
+    JSON.stringify({
+      rows,
+      lastUpdated: Date.now()
+    })
+  );
+  yottaData = rows;
+  return rows;
+})();
 
 function computeEAprValuesFromData(
   data = yottaData,
@@ -75,7 +95,6 @@ function computeEAprValuesFromData(
     0
   );
 
-  console.log("NOM", nominal);
   /**
    * The upper bound assumes only one person is playing the
    *    Yotta lottery.
