@@ -1,7 +1,7 @@
 const COST_PER_TICKET = 2500; // $25
 const ISSUED_TICKETS_PER_WEEK = 10000000; // 10 million tickets
 const BASE_APY = 0.2; // 0.20%
-const BACKEND_API_ENDPOINT = `http://localhost:4000/api/v1/prize-data?limit=1&sort=-createdAt`;
+const BACKEND_API_ENDPOINT = `https://yotta-odds-eapr-backend.herokuapp.com/api/v1/prize-data?limit=1&sort=-createdAt`;
 const YOTTA_DATA_KEY = "YOTTA_DATA_KEY";
 const REFRESH_TIME = 1000 * 60 * 15; // every 15 minutes
 
