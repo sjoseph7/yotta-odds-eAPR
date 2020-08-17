@@ -87,7 +87,10 @@ function addDataToTable(table, data) {
       tr,
       `$${prizeValue}${shared ? "" : " per ticket"}${annuity > 0 ? "**" : ""}`
     );
-    addDataColumnToRow(tr, `${odds.num}:${numberWithCommas(odds.den)}`);
+    addDataColumnToRow(
+      tr,
+      `${odds.numerator}:${numberWithCommas(odds.denominator)}`
+    );
 
     tbody.appendChild(tr);
   });
