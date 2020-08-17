@@ -15,47 +15,54 @@
 
 <body>
   <div class="container text-center mt-4" style="max-width:768px">
-    <h1>Yotta Savings eAPR Calculator</h1>
-    <h6>Updated daily using the odds reported in the <a href="https://www.withyotta.com/official-rules">official
-        rules</a></h6>
-    <p class="mt-5">This app calculates the <em>effective</em> APR ("eAPR") of Yotta Savings accounts. <a
-        href="/info.html">Learn more</a>.</p>
+    <header>
+      <h1>Yotta Savings eAPR Calculator</h1>
+      <h6>Updated daily using the odds reported in the <a href="https://www.withyotta.com/official-rules">official
+          rules</a></h6>
+      <p class="mt-5">This app calculates the <em>effective</em> APR ("eAPR") of Yotta Savings accounts. <a
+          href="/info.html">Learn more</a>.</p>
+    </header>
 
-    <div class="row">
-      <div class="col-sm-4 my-auto">
-        <!-- <div class="card"> -->
-        <div class="card-body">
-          <em class="card-title">Lower Bound</em> <a href="#define-lower-bound"><i
-              class="far fa-question-circle"></i></a>
-          <h2 id="lowerBound" class="card-text">-.--%</h2>
+    <section>
+      <div class="row">
+        <div class="col-sm-4 my-auto">
+          <!-- <div class="card"> -->
+          <div class="card-body">
+            <em class="card-title">Lower Bound</em> <a href="#define-lower-bound"><i
+                class="far fa-question-circle"></i></a>
+            <h2 id="lowerBound" class="card-text">-.--%</h2>
+          </div>
+          <!-- </div> -->
         </div>
-        <!-- </div> -->
-      </div>
-      <div class="col-sm-4">
-        <!-- <div class="card"> -->
-        <div class="card-body">
-          <em class="card-title h4">Nominal</em> <a href="#define-nominal"><i class="far fa-question-circle"></i></a>
-          <h1 id="nominal" class="card-text">-.--%</h1>
+        <div class="col-sm-4">
+          <!-- <div class="card"> -->
+          <div class="card-body">
+            <em class="card-title h4">Nominal</em> <a href="#define-nominal"><i class="far fa-question-circle"></i></a>
+            <h1 id="nominal" class="card-text">-.--%</h1>
+          </div>
+          <!-- </div> -->
         </div>
-        <!-- </div> -->
-      </div>
-      <div class="col-sm-4 my-auto">
-        <!-- <div class="card"> -->
-        <div class="card-body">
-          <em class="card-title">Upper Bound</em> <a href="#define-upper-bound"><i
-              class="far fa-question-circle"></i></a>
-          <h2 id="upperBound" class="card-text">-.--%</h2>
+        <div class="col-sm-4 my-auto">
+          <!-- <div class="card"> -->
+          <div class="card-body">
+            <em class="card-title">Upper Bound</em> <a href="#define-upper-bound"><i
+                class="far fa-question-circle"></i></a>
+            <h2 id="upperBound" class="card-text">-.--%</h2>
+          </div>
+          <!-- </div> -->
         </div>
-        <!-- </div> -->
       </div>
-    </div>
-    <div class="mb-5">
-      <small><em>*Rates shown do not include the 0.20% base annual percent yield (APY) offered by
-          Yotta and represent an estimate of the expected rate of return over the course of a year, based on the odds of
-          winning different prizes as seen in Yotta's <a href="https://www.withyotta.com/official-rules">official
-            rules</a></em></small>
-    </div>
-    <div class="card">
+
+      <div class="mb-5">
+        <small><em>*Rates shown do not include the 0.20% base annual percent yield (APY) offered by
+            Yotta and represent an estimate of the expected rate of return over the course of a year, based on the odds
+            of
+            winning different prizes as seen in Yotta's <a href="https://www.withyotta.com/official-rules">official
+              rules</a></em></small>
+      </div>
+    </section>
+
+    <section class="card">
       <div class="card-body">
         <form id="advanced" class="text-left">
           <h3 class="mt-2 mb-4"><strong>Recurring Tickets:</strong> <span id="recurringTickets">1</span></h3>
@@ -86,7 +93,8 @@
             <label for="approximateTicketsIssuedRange">(Approximate) number of tickets issued to all users per week:
               <input id="approximateTicketsIssuedInput" class="form-control" type="number" placeholder="1000000"
                 value="1000000">
-              <small class="form-text text-muted">The more tickets in circulation, the more likely a grand prize will be
+              <small class="form-text text-muted">The more tickets in circulation, the more likely a grand prize will
+                be
                 shared...</small>
             </label>
             <input id="approximateTicketsIssuedRange" class="form-control-range" type="range" min="1" max="20000000"
@@ -95,8 +103,9 @@
           </div>
         </form>
       </div>
-    </div>
-    <div class="table-responsive-sm">
+    </section>
+
+    <section class="table-responsive-sm">
       <table id="prizesAndOdds" class="table table-striped mt-4 mx-auto">
         <thead>
           <tr>
@@ -115,13 +124,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="mb-3 text-center">
-      <small class="m-3">SOURCE: <a target="_blank"
-          href="https://www.withyotta.com/official-rules">https://www.withyotta.com/official-rules</a></small>
-    </div>
+    </section>
 
-    <div class="text-left mb-5">
+    <section class="text-left mb-5">
       <p>
         <small><em>*If the prize does not say "per ticket" then the prize listed will be split equally amongst all
             individuals
@@ -135,6 +140,10 @@
             value of a $10,000,000, 40 year annuity.
           </em></small>
       </p>
+      <div class="mb-3 text-center">
+        <small class="m-3">SOURCE: <a target="_blank"
+            href="https://www.withyotta.com/official-rules">https://www.withyotta.com/official-rules</a></small>
+      </div>
       <br>
       <h3 id="define-lower-bound">Lower Bound</h3>
       <p>The lower bound calcuation assumes that so many people are participating in the lottery that the shared prizes,
@@ -144,13 +153,36 @@
       <p>The upper bound calcuation assumes that only one person is playing the lottery, so all shared prizes are
         received
         in full.</p>
-    </div>
-
-    <button id="goToTopBtn" class="shadow" title="Go to top" onclick="goToTopOfPage()">
-      <i class="fas fa-sort-up"></i>
-    </button>
+    </section>
   </div>
 
+  <footer>
+    <div class="bg-dark p-2">
+      <div class="container text-center p-1" style="max-width:768px">
+        <div class="row mb-2">
+          <div class="col-md-3 col-xs-12"><a href="https://www.withyotta.com/about">About Yotta</a></div>
+          <div class="col-md-3 col-xs-12"><a href="https://www.withyotta.com/official-rules">Official Rules</a></div>
+          <div class="col-md-3 col-xs-12"><a href="https://www.withyotta.com/faq">Yotta FAQ</a></div>
+          <div class="col-md-3 col-xs-12"><a href="/info.html">About This Site</a></div>
+        </div>
+        <div class="mb-2">
+          <small class="text-white"><em>This site has not been reviewed by Yotta and the calculated effective APR
+              ("eAPR")
+              is an estimate of an
+              expected annualized percent return, not a guarantee. Use this tool at your own risk.</em></small>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-white text-center" style="background-color:#242a30">
+      <small class="my-auto">Made by <a href="https://github.com/sjoseph7/yotta-odds-eAPR">sjoseph7</a> &#169;
+        2020</small>
+    </div>
+  </footer>
+
+  <button id="goToTopBtn" class="shadow" title="Go to top" onclick="goToTopOfPage()">
+    <i class="fas fa-sort-up"></i>
+  </button>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
