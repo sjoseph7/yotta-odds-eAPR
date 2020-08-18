@@ -9,47 +9,47 @@ let yottaData = [];
 
 (async function () {
   let rows = [];
-  // Use locally stored data if it exists...
-  if (
-    localStorage &&
-    localStorage.getItem(YOTTA_DATA_KEY) &&
-    Date.now() - JSON.parse(localStorage.getItem(YOTTA_DATA_KEY)).lastUpdated <
-      REFRESH_TIME
-  ) {
-    const data = JSON.parse(localStorage.getItem(YOTTA_DATA_KEY));
+
+  function isStale(data, refreshTime = REFRESH_TIME) {
+    return (
+      !(data && data.lastUpdated) || Date.now() - data.lastUpdated > refreshTime
+    );
+  }
+  // Use locally stored data if it exists and is 'fresh'...
+  const storedData =
+    localStorage && JSON.parse(localStorage.getItem(YOTTA_DATA_KEY));
+  if (storedData && storedData.rows && storedData.rows.length > 0) {
     console.info("Using stored data");
-    rows = data.rows;
-  } else {
-    // ...otherwise get data from backend
-    rows = await fetch(BACKEND_API_ENDPOINT).then(async function (response) {
-      try {
+    rows = storedData.rows;
+    updateUiFromRows(rows);
+  }
+
+  // ...otherwise get data from back end
+  if (isStale(storedData)) {
+    // This reduces the load on the back-end server
+    try {
+      rows = await fetch(BACKEND_API_ENDPOINT).then(async function (response) {
         console.info("Getting new data");
         const json = await response.json();
         return json.data[0] && json.data[0].rows;
-      } catch (err) {
-        return [];
-      }
-    });
-  }
-  const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
-    rows,
-    2500
-  );
-  loading = false;
-  updateTableWithData(prizesAndOdds, rows);
-  updateEAprValues(
-    [lowerBound, nominal, upperBound],
-    [lowerValue, nominalValue, upperValue]
-  );
+      });
 
-  localStorage.setItem(
-    YOTTA_DATA_KEY,
-    JSON.stringify({
-      rows,
-      lastUpdated: Date.now()
-    })
-  );
+      // Save retrieved data
+      localStorage.setItem(
+        YOTTA_DATA_KEY,
+        JSON.stringify({
+          rows,
+          lastUpdated: Date.now()
+        })
+      );
+    } catch (err) {
+      return [];
+    }
+  }
+
+  updateUiFromRows(rows);
   yottaData = rows;
+
   return rows;
 })();
 

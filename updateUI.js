@@ -4,7 +4,17 @@ yottaBalance.addEventListener("keyup", () =>
 );
 
 // Update number of tickets issues per week
-const updateNominalValue = () => {
+approximateTicketsIssuedRange.addEventListener("input", e => {
+  approximateTicketsIssuedInput.value = parseInt(e.target.value);
+  updateNominalValue();
+});
+approximateTicketsIssuedInput.addEventListener("keyup", e => {
+  approximateTicketsIssuedRange.value = parseInt(e.target.value);
+  updateNominalValue();
+});
+
+// Update displayed nominal value
+function updateNominalValue() {
   const approximateTicketsIssued = approximateTicketsIssuedInput.value;
   const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
     undefined,
@@ -17,16 +27,9 @@ const updateNominalValue = () => {
     [lowerBound, nominal, upperBound],
     [lowerValue, nominalValue, upperValue]
   );
-};
-approximateTicketsIssuedRange.addEventListener("input", e => {
-  approximateTicketsIssuedInput.value = parseInt(e.target.value);
-  updateNominalValue();
-});
-approximateTicketsIssuedInput.addEventListener("keyup", e => {
-  approximateTicketsIssuedRange.value = parseInt(e.target.value);
-  updateNominalValue();
-});
+}
 
+// Update table containing odds and prize data
 function updateTableWithData(table, data = {}) {
   const headers = ["Matches Yotta Ball", "Number of Matches", "Prize*", "Odds"];
 
@@ -35,11 +38,28 @@ function updateTableWithData(table, data = {}) {
   addDataToTable(table, data);
 }
 
+// Update number of displayed recurring tickets
 function updateUserEntries(balanceInput, ticketText) {
   const balance = parseInt(balanceInput.value * 100);
   ticketText.innerText = numberWithCommas(parseInt((balance || 2500) / 2500));
 }
 
+// Update nominal and lower/upper bounds using row data from API
+function updateUiFromRows(rows) {
+  const [lowerValue, nominalValue, upperValue] = computeEAprValuesFromData(
+    rows,
+    COST_PER_TICKET
+  );
+  loading = false;
+  updateTableWithData(prizesAndOdds, rows);
+  updateEAprValues(
+    [lowerBound, nominal, upperBound],
+    [lowerValue, nominalValue, upperValue]
+  );
+}
+
+// ==== HELPERS ==== //
+// Update displayed text for nominal and upper/lower bounds
 function updateEAprValues(
   [lowerElement, nominalElement, upperElement] = [],
   [lowerValue, nominalValue, upperValue] = []
@@ -49,10 +69,12 @@ function updateEAprValues(
   upperElement.innerText = `${upperValue.toFixed(2)}%`;
 }
 
+// Clear any provided table
 function clearTable(table) {
   table.innerHTML = "";
 }
 
+// Add provided headers to provided table
 function addHeadersToTable(table, headers) {
   const thead = document.createElement("thead");
   const thead_tr = document.createElement("tr");
@@ -65,6 +87,7 @@ function addHeadersToTable(table, headers) {
   table.appendChild(thead);
 }
 
+// Add provided data to provided table
 function addDataToTable(table, data) {
   const tbody = document.createElement("tbody");
   data.forEach(row => {
@@ -97,6 +120,7 @@ function addDataToTable(table, data) {
   table.appendChild(tbody);
 }
 
+// Display numbers with commas
 function numberWithCommas(number) {
   // Help from -> https://stackoverflow.com/a/2901298
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
