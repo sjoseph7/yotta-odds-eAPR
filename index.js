@@ -66,7 +66,7 @@ function computeEAprValuesFromData(
 
   /**
    * The lower bound assumes only infinite people are playing
-   *    the Yotta lottery
+   *    the Yotta sweepstakes.
    */
   const lowerBound = data.reduce(
     (sum, oddsItem) =>
@@ -97,7 +97,7 @@ function computeEAprValuesFromData(
 
   /**
    * The upper bound assumes only one person is playing the
-   *    Yotta lottery.
+   *    Yotta sweepstakes.
    */
   const upperBound = data.reduce((sum, oddsItem) => {
     sum += expectedValue(oddsItem);
