@@ -4,11 +4,11 @@ yottaBalance.addEventListener("keyup", () =>
 );
 
 // Update number of tickets issues per week
-approximateTicketsIssuedRange.addEventListener("input", e => {
+approximateTicketsIssuedRange.addEventListener("input", (e) => {
   approximateTicketsIssuedInput.value = parseInt(e.target.value);
   updateNominalValue();
 });
-approximateTicketsIssuedInput.addEventListener("keyup", e => {
+approximateTicketsIssuedInput.addEventListener("keyup", (e) => {
   approximateTicketsIssuedRange.value = parseInt(e.target.value);
   updateNominalValue();
 });
@@ -78,7 +78,7 @@ function clearTable(table) {
 function addHeadersToTable(table, headers) {
   const thead = document.createElement("thead");
   const thead_tr = document.createElement("tr");
-  const thead_ths = headers.forEach(text => {
+  const thead_ths = headers.forEach((text) => {
     const th = document.createElement("th");
     th.innerText = text;
     thead_tr.appendChild(th);
@@ -90,7 +90,7 @@ function addHeadersToTable(table, headers) {
 // Add provided data to provided table
 function addDataToTable(table, data) {
   const tbody = document.createElement("tbody");
-  data.forEach(row => {
+  data.forEach((row) => {
     const { yotta, shared, matches, prize, odds, annuity } = row;
     const tr = document.createElement("tr");
 
