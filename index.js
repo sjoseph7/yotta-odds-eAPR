@@ -1,5 +1,5 @@
 const COST_PER_TICKET = 2500; // $25
-const ISSUED_TICKETS_PER_WEEK = 10000000; // 10 million tickets
+const ISSUED_TICKETS_PER_WEEK = 12000000; // 12 million tickets
 const BASE_APY = 0.2; // 0.20%
 const BACKEND_API_ENDPOINT = `https://yotta-odds-eapr-backend.herokuapp.com/api/v1/prize-data?limit=1&sort=-createdAt`;
 const YOTTA_DATA_KEY = "YOTTA_DATA_KEY";
@@ -39,7 +39,7 @@ let yottaData = [];
         YOTTA_DATA_KEY,
         JSON.stringify({
           rows,
-          lastUpdated: Date.now()
+          lastUpdated: Date.now(),
         })
       );
     } catch (err) {
@@ -61,7 +61,7 @@ function computeEAprValuesFromData(
     ISSUED_TICKETS_PER_WEEK
 ) {
   const tickets = parseInt(balance / COST_PER_TICKET) + extraTickets;
-  const expectedValue = oddsItem =>
+  const expectedValue = (oddsItem) =>
     oddsItem.prize * (oddsItem.odds.numerator / oddsItem.odds.denominator);
 
   /**
@@ -107,6 +107,6 @@ function computeEAprValuesFromData(
   return [
     ((lowerBound * tickets) / balance) * 100 * 52,
     ((nominal * tickets) / balance) * 100 * 52,
-    ((upperBound * tickets) / balance) * 100 * 52
+    ((upperBound * tickets) / balance) * 100 * 52,
   ];
 }
