@@ -1,5 +1,5 @@
 # README.md
-A webapp designed to estimate the effective APR of Yotta's Savings accounts.
+A web app designed to estimate the effective APR of Yotta's Savings accounts.
 
 Yotta, presumably named after the [largest decimal unit prefix](https://en.wikipedia.org/wiki/Yotta-) in the metric
 system, is a prize-linked savings account that gamifies saving money. In addition to offering a traditional
