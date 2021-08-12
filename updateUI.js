@@ -42,7 +42,7 @@ function updateTableWithData(table, data = {}) {
 function updateUserEntries(balanceInput, ticketText) {
   const balance = parseInt(balanceInput.value * 100);
 
-  // Number of tickets decreases (from $25 to $150) over $10k
+  // Number of tickets change from 1 ticket/$25 to 1 ticket/$150 over $10k
   const below10k = Math.min(balance, 1000000);
   const above10k = Math.max(balance - 1000000, 0);
   const totalTickets = parseInt((below10k || 2500)/2500) + parseInt(above10k/15000)
