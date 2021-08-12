@@ -41,7 +41,13 @@ function updateTableWithData(table, data = {}) {
 // Update number of displayed recurring tickets
 function updateUserEntries(balanceInput, ticketText) {
   const balance = parseInt(balanceInput.value * 100);
-  ticketText.innerText = numberWithCommas(parseInt((balance || 2500) / 2500));
+
+  // Number of tickets decreases (from $25 to $150) over $10k
+  const below10k = Math.min(balance, 1000000);
+  const above10k = Math.max(balance - 1000000, 0);
+  const totalTickets = parseInt((below10k || 2500)/2500) + parseInt(above10k/15000)
+
+  ticketText.innerText = numberWithCommas(totalTickets);
 }
 
 // Update nominal and lower/upper bounds using row data from API
